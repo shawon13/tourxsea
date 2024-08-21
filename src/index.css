@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: "Barlow", sans-serif;
+}
+
+.black-color {
+    color: #2d373c;
+}
+
+.bg-black-color {
+    background-color: #2d373c;
+}
+
+.red-color {
+    color: #ff4838;
+}
+
+.bg-red {
+    background-color: #ff4838;
+}
+
+.white-color {
+    color: #ffffff !important;
+}
+
+.border_color {
+    border-color: #ff4838;
+}
