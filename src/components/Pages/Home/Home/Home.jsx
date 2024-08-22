@@ -67,7 +67,59 @@ const Home = () => {
         fetch('http://localhost:5000/countries')
             .then(res => res.json())
             .then(data => setCountries(data))
-    }, [])
+    }, []);
+
+    //tour type
+    const types = [
+        {
+            "id": 1,
+            "img": "https://i.ibb.co/JpW03L6/type-one.png",
+            "title": "self-Guided"
+        },
+        {
+            "id": 2,
+            "img": "https://i.ibb.co/kHQJVRc/type-two.png",
+            "title": "Cruises"
+        },
+        {
+            "id": 3,
+            "img": "https://i.ibb.co/W5s9YwL/type-three.png",
+            "title": "Adventure"
+        },
+        {
+            "id": 4,
+            "img": "https://i.ibb.co/hXNzbtT/type-four.png",
+            "title": "Wildlife"
+        },
+        {
+            "id": 5,
+            "img": "https://i.ibb.co/2yQ1N6D/type-five.png",
+            "title": "Seaside"
+        }
+
+    ]
+    //tour Guide
+    const guides = [
+        {
+            "id": 1,
+            "img": "https://i.ibb.co/Kw8f5qN/guide-md1.png",
+            "title": "Marvin McKinney",
+            "des": "Tour Guide"
+        },
+        {
+            "id": 2,
+            "img": "https://i.ibb.co/j63Sps9/guide-m2.png",
+            "title": "Charlotte Sophia",
+            "des": "Tour Guide"
+        },
+        {
+            "id": 3,
+            "img": "https://i.ibb.co/0rqfypL/guide-md3.png",
+            "title": "Brooklyn Simmons",
+            "des": "Tour Guide"
+        }
+
+    ]
     return (
         <>
             {/* Banar Start */}
@@ -127,7 +179,7 @@ const Home = () => {
                 </div>
                 {
                     next < tours.length && <div className='text-center'>
-                        <button onClick={handleTourMore} className='btn btn-outline text-2xl mt-10'>More Tour</button>
+                        <button onClick={handleTourMore} className='btn btn-outline text-2xl mt-8'>More Tour</button>
                     </div>
                 }
 
@@ -146,6 +198,48 @@ const Home = () => {
                 </div>
             </section>
             {/* Tourists Country Spot End */}
+            {/* Tour Type start */}
+            <section className='p-20 type-bg'>
+                <div className='mb-14'>
+                    <h2 className='text-center text-4xl font-semibold mb-3 text-white'>Tourists Spot</h2>
+                    <p className='w-3/4 mx-auto text-center text-white'> Is a must-visit destination, known for its stunning natural landscapes and vibrant local culture. Explore its iconic landmarks, enjoy scenic hikes, and experience the rich history that defines this unique location. Perfect for both relaxation and adventure, it offers a memorable escape into nature and tradition.</p>
+                </div>
+                <div className='grid grid-cols-5 gap-5 justify-center items-center'>
+                    {
+                        types.map(type => <div key={type.id}>
+                            <div className='flex justify-center items-center\'>
+                                <img src={type.img} alt="" />
+                            </div>
+                            <h3 className='text-white text-center mt-5 font-bold text-3xl'>{type.title}</h3>
+                        </div>)
+                    }
+                </div>
+            </section>
+            {/* Tour Type End */}
+            {/* Tour Guide start */}
+            <section className='p-20'>
+                <div className='mb-14'>
+                    <h2 className='text-center text-4xl font-semibold mb-3'>Tour Guide</h2>
+                    <p className='w-3/4 mx-auto text-center'>Duis rutrum nisl urna. Maecenas vel libero faucibus nisi venenatis hendrerit a id lectus. Suspendissendt blandit interdum. Sed pellentesque at nunc eget consectetur.</p>
+                </div>
+                <div className='grid grid-cols-3 gap-5 justify-center items-center'>
+                    {
+                        guides.map(guide => <div key={guide.id} className="card card-compact bg-base-100 w-96 shadow-md rounded-none p-0">
+                            <figure>
+                                <img
+                                    className='rounded'
+                                    src={guide.img}
+                                    alt="Shoes" />
+                            </figure>
+                            <div className="card-body inline">
+                                <h2 className="card-title justify-center">{guide.title}</h2>
+                                <p className='text-center font-medium text-xl'>{guide.des}</p>
+                            </div>
+                        </div>)
+                    }
+                </div>
+            </section>
+            {/* Tour Guide End */}
         </>
     );
 }

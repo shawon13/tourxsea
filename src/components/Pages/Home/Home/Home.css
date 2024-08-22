@@ -56,3 +56,10 @@
 .swiper-button-prev:after {
     font-size: 20px !important;
 }
+
+.type-bg {
+    background-image: url('../../../../assets/type-bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

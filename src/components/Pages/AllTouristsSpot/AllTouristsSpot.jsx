@@ -8,6 +8,21 @@ import { useEffect, useState } from 'react';
 const AllTouristsSpot = () => {
     const [loading, setLoading] = useState(true);
     const tours = useLoaderData();
+    const [sortedTours, setSortedTours] = useState(tours);
+    const [sortOrder, setSortOrder] = useState('asc'); // Default sort order
+
+    useEffect(() => {
+        let sorted = [...tours];
+        sorted.sort((a, b) => {
+            if (sortOrder === 'asc') {
+                return a.averagecost - b.averagecost;
+            } else {
+                return b.averagecost - a.averagecost;
+            }
+        });
+        setSortedTours(sorted);
+    }, [sortOrder, tours]);
+
 
     useEffect(() => {
         if (tours) {
@@ -22,10 +37,16 @@ const AllTouristsSpot = () => {
     }
     return (
         <div className='px-20 my-20'>
+            <div className='mb-5 flex justify-center gap-5'>
+                <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)} className='dropdown'>
+                    <option value='asc'>Sort by Cost: Low to High</option>
+                    <option value='desc'>Sort by Cost: High to Low</option>
+                </select>
+            </div>
             <h2 className='text-center text-4xl font-semibold mb-10'>All Tourists Spot</h2>
             <div className='grid grid-cols-3 gap-5'>
                 {
-                    tours.map(tour => <div className="card glass w-96 p-0 rounded-b-none" key={tour._id}>
+                    sortedTours.map(tour => <div className="card glass w-96 p-0 rounded-b-none" key={tour._id}>
                         <figure className='relative'>
                             <img className='w-full h-64'
                                 src={tour.photo}

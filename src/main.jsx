@@ -17,11 +17,13 @@ import AddCountry from './components/Pages/AddCountry/AddCountry.jsx';
 import CountryTouristsSpot from './components/Pages/CountryTouristsSpot/CountryTouristsSpot.jsx';
 import SingleTouristsSpot from './components/Pages/SingleTouristsSpot/SingleTouristsSpot.jsx';
 import PrivetRouter from './Router/PrivetRouter.jsx';
+import ErrorPage from './components/Pages/ErrorPage/ErrorPage.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '/',
@@ -41,11 +43,6 @@ const router = createBrowserRouter([
         element: <AddCountry></AddCountry>
       },
       {
-        path: '/countrytouristsspot/:countryname',
-        element: <CountryTouristsSpot></CountryTouristsSpot>,
-        // loader: ({ params }) => fetch(`http://localhost:5000/tours/${params.countryname}`)
-      },
-      {
         path: '/addtouristsspot',
         element: <AddTouristsSpot></AddTouristsSpot>
       },
@@ -58,6 +55,11 @@ const router = createBrowserRouter([
         path: '/tours/:id',
         element: <PrivetRouter><SingleTouristsSpot></SingleTouristsSpot></PrivetRouter>,
         loader: ({ params }) => fetch(`http://localhost:5000/tours/${params.id}`)
+      },
+      {
+        path: '/countries/:countryname',
+        element: <PrivetRouter><CountryTouristsSpot /></PrivetRouter>,
+        loader: ({ params }) => fetch(`http://localhost:5000/countries/${params.countryname}`)
       }
 
     ]
